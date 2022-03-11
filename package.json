@@ -23,6 +23,8 @@
     "serverless-export-env": "github:arabold/serverless-export-env"
   },
   "dependencies": {
+    "@middy/core": "^2.5.7",
+    "@middy/ssm": "^2.5.7",
     "aws4": "^1.11.0",
     "axios": "^0.26.1",
     "chance": "^1.1.8",
