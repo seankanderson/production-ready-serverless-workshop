@@ -20,7 +20,8 @@
     "dotenv": "^16.0.0",
     "jest": "^27.5.1",
     "serverless": "^3.7.3",
-    "serverless-export-env": "github:arabold/serverless-export-env"
+    "serverless-export-env": "github:arabold/serverless-export-env",
+    "serverless-export-outputs": "^1.0.2"
   },
   "dependencies": {
     "@middy/core": "^2.5.7",
