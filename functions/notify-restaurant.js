@@ -2,7 +2,7 @@ const EventBridge = require('aws-sdk/clients/eventbridge')
 const eventBridge = new EventBridge()
 const SNS = require('aws-sdk/clients/sns')
 const sns = new SNS()
-
+const Log = require('@dazn/lambda-powertools-logger')
 const busName = process.env.bus_name
 const topicArn = process.env.restaurant_notification_topic
 
@@ -15,8 +15,8 @@ module.exports.handler = async (event) => {
     await sns.publish(snsReq).promise()
 
     const { restaurantName, orderId } = order
-    console.log(`notified restaurant [${restaurantName}] of order [${orderId}]`)
-
+    Log.debug('notified restaurant', {restaurantName: restaurantName})
+    //Log.debug('getting restaurants...', { url: restaurantsApiRoot })
     await eventBridge.putEvents({
         Entries: [{
             Source: 'big-mouth',
@@ -26,5 +26,5 @@ module.exports.handler = async (event) => {
         }]
     }).promise()
 
-    console.log(`published 'restaurant_notified' event to EventBridge`)
+    Log.debug('published restaurant_notified event to EventBridge', {})
 }
